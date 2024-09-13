@@ -104,7 +104,15 @@ func saveSprite(data []byte, filename string) error {
 }
 
 func main() {
-	url := "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/1/"
+	var id int
+	fmt.Print("Enter Pokemon ID: ")
+	_, err := fmt.Scanf("%d", &id)
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		return
+	}
+
+	url := fmt.Sprintf("https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/%d/", id)
 
 	var wg sync.WaitGroup
 	resultChan := make(chan []byte)
